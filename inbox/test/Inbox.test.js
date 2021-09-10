@@ -26,4 +26,10 @@ describe('Inbox', () => {
         const message = await inbox.methods.message().call();
         assert.equal(message, 'Hello World')
     });
+
+    it('can change a message', async () => {
+        await inbox.methods.setMessage('Bye World').send({ from: accounts[0], gas: '1000000'});
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'Bye World')
+    });
 });
